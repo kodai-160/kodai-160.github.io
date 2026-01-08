@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fushigi Crawler | CTF Writeups</title>
+    <meta name="description" content="クローラーからのアクセスが変らしい！" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container hero hero-container">
+        <a href="/" aria-label="CTF Writeups">
+          <strong>CTF Writeups</strong>
+        </a>
+        <p>CTFのwriteupと実績をまとめるブログ</p>
+      </div>
+    </header>
+    <main class="container">
+      
+    <article class="article">
+      <h1>Fushigi Crawler</h1>
+      <div class="meta">2026/01/04 · Daily AlpacaHack(1/4)</div>
+      <div class="tags"><span class="tag">#web</span><span class="tag">#AlpacaHack</span></div>
+      <h2>配布されたファイル(flagゲットに使えるもの)</h2>
+<pre><code class="language-js">import express from &quot;express&quot;;
+import rateLimit from &quot;express-rate-limit&quot;;
+
+const FLAG = process.env.FLAG ?? console.log(&quot;No flag&quot;) ?? process.exit(1);
+
+const app = express();
+app.use(express.json());
+app.use(express.static(&quot;public&quot;));
+app.use(&quot;/api&quot;, rateLimit({ windowMs: 60 * 1000, max: 4, }));
+
+app.post(&quot;/api/crawl-request&quot;, async (req, res) =&gt; {
+  const url = req.body?.url;
+  if (typeof url !== &quot;string&quot; || (!url.startsWith(&quot;http://&quot;) &amp;&amp; !url.startsWith(&quot;https://&quot;)))
+    return res.status(400).send(&quot;Invalid url&quot;);
+  try {
+    const r = await fetch(url, { headers: { FLAG }, signal: AbortSignal.timeout(5000) }); // !!
+    if (!r.ok) return res.status(502).send(&quot;Fetch failed&quot;);
+    return res.sendStatus(200);
+  } catch (e) {
+    return res.status(500).send(`Something wrong: ${e.name}`);
+  }
+});
+
+app.listen(3333);
+</code></pre>
+<h2>writeup</h2>
+<p><img src="/content/image/Fushigi-Crawler.png" alt="与えられているwebページ"></p>
+<p>図のように、URLを入力するとそこにbotがアクセスするwebサイトが与えられる。</p>
+<p>配布されたコードを見ると、urlが<code>string</code>ではない、urlが<code>http://</code> もしくは<code>https://</code> で始まっていない場合は外される。</p>
+<p>また</p>
+<pre><code class="language-js">const r = await fetch(url, { headers: { FLAG }, signal: AbortSignal.timeout(5000) });
+</code></pre>
+<p>このbotが他のサイトにアクセスすると、headerに<code>FLAG</code>が送られる。<br>
+よって自分で立てたサーバのurlを貼るとFLAGがゲットできる。<br>
+今回私は<a href="https://webhook.site/">webhook.site</a>を使った。<br>
+するとflagが返ってきた。<br>
+<img src="/content/image/Fushigi-Crawler-flag.png" alt="flag"></p>
+<p>FLAG : <code>Alpaca{CRAWLER_IS_SUGOI!}</code></p>
+
+    </article>
+  
+    </main>
+    <footer class="footer">
+      <small>© 2026 Your Name</small>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>
