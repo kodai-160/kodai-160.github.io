@@ -3,14 +3,104 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0; url=/myblog/" />
-    <link rel="canonical" href="https://kodai-160.github.io/myblog/" />
-    <script>
-      location.replace('/myblog/' + location.search + location.hash);
-    </script>
+    <title>CTF Writeups</title>
+    <meta name="description" content="CTFのwriteupと実績をまとめるブログ" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="/app.js" defer></script>
   </head>
   <body>
-    <p><a href="/myblog/">/myblog/ に移動します</a></p>
+    <header>
+      <div class="container hero hero-container">
+        <a href="/" aria-label="CTF Writeups">
+          <strong>CTF Writeups</strong>
+        </a>
+        <p>CTFのwriteupと実績をまとめるブログ</p>
+      </div>
+    </header>
+    <main class="container">
+      
+    <section class="filters">
+      <h2>カテゴリ</h2>
+      <div class="tags" data-tag-filters>
+        <button class="tag is-active" type="button" data-tag="all">すべて</button>
+        <button class="tag" type="button" data-tag="alpacahack">AlpacaHack</button><button class="tag" type="button" data-tag="crypto">Crypto</button><button class="tag" type="button" data-tag="crypto">crypto</button><button class="tag" type="button" data-tag="misc">misc</button><button class="tag" type="button" data-tag="reversing">reversing</button><button class="tag" type="button" data-tag="web">web</button>
+      </div>
+    </section>
+    <section class="grid">
+      
+            <article class="card" data-tags="web,alpacahack">
+              <h2><a href="/posts/impossible-puzzle/">impossible-puzzle</a></h2>
+              <div class="meta">2026/04/04 · Daily AlpacaHack(4/4)</div>
+              <p>長さが違うのに、同じ!?</p>
+              <div class="tags"><span class="tag">#web</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="crypto,alpacahack">
+              <h2><a href="/posts/you-are-my-friend/">You are my friend</a></h2>
+              <div class="meta">2026/04/03 · Daily AlpacaHack(4/3)</div>
+              <p>やあ！友よ！</p>
+              <div class="tags"><span class="tag">#Crypto</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="web,alpacahack">
+              <h2><a href="/posts/message-for-you/">Message For You</a></h2>
+              <div class="meta">2026/04/02 · Daily AlpacaHack(4/2)</div>
+              <p>私からの隠れたメッセージを探してください</p>
+              <div class="tags"><span class="tag">#web</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="crypto,alpacahack">
+              <h2><a href="/posts/square-rsa/">Square RSA</a></h2>
+              <div class="meta">2026/01/07 · Daily AlpacaHack(1/7)</div>
+              <p>RSA 暗号で素数を使い回すことにしました!</p>
+              <div class="tags"><span class="tag">#crypto</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="misc,alpacahack">
+              <h2><a href="/posts/jailaij/">jailaij</a></h2>
+              <div class="meta">2026/01/06 · Daily AlpacaHack(1/6)</div>
+              <p>クローラーからのアクセスが変らしい！</p>
+              <div class="tags"><span class="tag">#misc</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="crypto,alpacahack">
+              <h2><a href="/posts/encoding-basics/">Encoding Basics</a></h2>
+              <div class="meta">2026/01/05 · Daily AlpacaHack(1/5)</div>
+              <p>CTFのCryptoでよく使われるencode方法を学びましょう！</p>
+              <div class="tags"><span class="tag">#crypto</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="web,alpacahack">
+              <h2><a href="/posts/fushigi-crawler/">Fushigi Crawler</a></h2>
+              <div class="meta">2026/01/04 · Daily AlpacaHack(1/4)</div>
+              <p>クローラーからのアクセスが変らしい！</p>
+              <div class="tags"><span class="tag">#web</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="reversing,alpacahack">
+              <h2><a href="/posts/ruby-flag-checker/">Ruby-Flag-Checker</a></h2>
+              <div class="meta">2026/01/03 · Daily AlpacaHack(1/3)</div>
+              <p>🦙 &lt; Ruby でフラグチェッカーを書いてみるパカ!</p>
+              <div class="tags"><span class="tag">#reversing</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+            <article class="card" data-tags="crypto,alpacahack">
+              <h2><a href="/posts/super-tomato/">super-tomato</a></h2>
+              <div class="meta">2026/01/02 · Daily AlpacaHack(1/2)</div>
+              <p>ぴんくいろ の ぼうしょく は とまと を もとめて いる...</p>
+              <div class="tags"><span class="tag">#crypto</span><span class="tag">#AlpacaHack</span></div>
+            </article>
+          
+    </section>
+    <p class="empty-state" hidden>該当するwriteupがありません。</p>
+  
+    </main>
+    <footer class="footer">
+      <small>© 2026 Your Name</small>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
   </body>
 </html>

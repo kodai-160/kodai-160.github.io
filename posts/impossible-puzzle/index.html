@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>impossible-puzzle | CTF Writeups</title>
+    <meta name="description" content="長さが違うのに、同じ!?" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container hero hero-container">
+        <a href="/" aria-label="CTF Writeups">
+          <strong>CTF Writeups</strong>
+        </a>
+        <p>CTFのwriteupと実績をまとめるブログ</p>
+      </div>
+    </header>
+    <main class="container">
+      <article class="article">
+        <h1>impossible-puzzle</h1>
+        <div class="meta">2026/04/04 · Daily AlpacaHack(4/4)</div>
+        <div class="tags"><span class="tag">#web</span><span class="tag">#AlpacaHack</span></div>
+        <h2>配布されたファイル</h2>
+<pre><code class="language-php">&lt;?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $A = $_POST['A'] ?? '';
+    $B = $_POST['B'] ?? '';
+
+    if (!is_string($A) || !is_string($B)) {
+        die('Invalid input');
+    }
+    if (strlen($A) != strlen($B) &amp;&amp; $A == $B){
+        echo &quot;&lt;blockquote&gt;Congratulations! Here is your flag:\n&quot; . getenv('FLAG') . &quot;&lt;/blockquote&gt;&quot;;
+    }
+    else {
+        echo &quot;&lt;blockquote&gt;Try again!&lt;/blockquote&gt;&quot;;
+    }
+}
+
+?&gt;
+
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;Impossible Puzzle&lt;/title&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://unpkg.com/sakura.css/css/sakura.css&quot; type=&quot;text/css&quot; /&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/dompurify@3.3.1/dist/purify.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Impossible Puzzle&lt;/h1&gt;
+    &lt;p&gt;Enter two strings A and B. If they are equal in content but different in length, you will get the flag!&lt;/p&gt;
+    &lt;form method=&quot;post&quot;&gt;
+        &lt;label for=&quot;A&quot;&gt;A:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;A&quot; name=&quot;A&quot; required&gt;
+        &lt;label for=&quot;B&quot;&gt;B:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;B&quot; name=&quot;B&quot; required&gt;
+        &lt;button type=&quot;submit&quot;&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <h2>writeup</h2>
+        <p>与えられたファイルでは <code>A</code> と <code>B</code> で長さは違うが、同じ値を指すことができれば FLAG をゲットできることが分かります。<br>
+        PHP の文字列比較では、両方が numeric string の場合は数値比較になります。<br>
+        そのため、<code>A=01</code>, <code>B=1</code> を送ると条件を満たせます。</p>
+        <p><a href="https://www.php.net/manual/en/language.operators.comparison.php">PHP comparison operators documentation</a></p>
+        <p>FLAG : <code>Alpaca{L00se_c0mpar1sons_1n_php_mak3s_unexp3cted_behavi0r}</code></p>
+      </article>
+    </main>
+    <footer class="footer">
+      <small>© 2026 Your Name</small>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

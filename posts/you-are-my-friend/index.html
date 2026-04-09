@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>You are my friend | CTF Writeups</title>
+    <meta name="description" content="やあ！友よ！" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container hero hero-container">
+        <a href="/" aria-label="CTF Writeups">
+          <strong>CTF Writeups</strong>
+        </a>
+        <p>CTFのwriteupと実績をまとめるブログ</p>
+      </div>
+    </header>
+    <main class="container">
+      <article class="article">
+        <h1>You are my friend</h1>
+        <div class="meta">2026/04/03 · Daily AlpacaHack(4/3)</div>
+        <div class="tags"><span class="tag">#Crypto</span><span class="tag">#AlpacaHack</span></div>
+        <h2>配布されたファイル</h2>
+<pre><code class="language-py">def rot13_char(c):
+    if 'a' &lt;= c &lt;= 'z':
+        return chr((ord(c) - ord('a') + 13) % 26 + ord('a'))
+    if 'A' &lt;= c &lt;= 'Z':
+        return chr((ord(c) - ord('A') + 13) % 26 + ord('A'))
+    return c
+
+def rot13(text):
+    return ''.join(rot13_char(c) for c in text)
+
+cts = [238, 55, 26, 13, 30, 30, 21, 56, 58, 43, 60, 40, 52, 45, 6, 47, 48, 33, 53, 51, 62, 24, 37, 61, 5, 56, 7, 23, 83, 123, 44, 56, 52, 24, 7, 23, 15]
+
+ct = ['?'] * len(cts)
+ct[0] = 'N'
+
+for i in range(1, len(cts)):
+    ct[i] = chr(cts[i] ^ ord(ct[i - 1]))
+
+ct = ''.join(ct)
+flag = rot13(ct)
+key = cts[0] ^ ord(ct[0])
+
+print(&quot;ct  =&quot;, ct)
+print(&quot;key =&quot;, key)
+print(&quot;flag =&quot;, flag)
+</code></pre>
+        <h2>writeup</h2>
+        <p><code>ct[0]='N'</code> となっており、与えられたプログラムに書いてある通り <code>rot13('A') = 'N'</code> に変換できます。<br>
+        また cts は <code>cts[i] ^ ord(ct[i-1])</code> となっていて XOR を行っているので、逆のことをしてあげれば復元できます。</p>
+        <h2>solver</h2>
+<pre><code class="language-py">def rot13_char(c):
+    if 'a' &lt;= c &lt;= 'z':
+        return chr((ord(c) - ord('a') + 13) % 26 + ord('a'))
+    if 'A' &lt;= c &lt;= 'Z':
+        return chr((ord(c) - ord('A') + 13) % 26 + ord('A'))
+    return c
+
+def rot13(text):
+    return ''.join(rot13_char(c) for c in text)
+
+cts = [238, 55, 26, 13, 30, 30, 21, 56, 58, 43, 60, 40, 52, 45, 6, 47, 48, 33, 53, 51, 62, 24, 37, 61, 5, 56, 7, 23, 83, 123, 44, 56, 52, 24, 7, 23, 15]
+
+ct = ['?'] * len(cts)
+ct[0] = 'N'
+
+for i in range(1, len(cts)):
+    ct[i] = chr(cts[i] ^ ord(ct[i - 1]))
+
+ct = ''.join(ct)
+flag = rot13(ct)
+key = cts[0] ^ ord(ct[0])
+
+print(&quot;ct  =&quot;, ct)
+print(&quot;key =&quot;, key)
+print(&quot;flag =&quot;, flag)
+
+ct  = Nycnpn{CyRnFr_YvFgRa_Gb_Zber!ZvNzber}
+key = 160
+flag = Alpaca{PlEaSe_LiStEn_To_More!MiAmore}
+</code></pre>
+        <p>FLAG : <code>Alpaca{PlEaSe_LiStEn_To_More!MiAmore}</code></p>
+      </article>
+    </main>
+    <footer class="footer">
+      <small>© 2026 Your Name</small>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+  </body>
+</html>

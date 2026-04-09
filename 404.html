@@ -3,17 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Redirecting…</title>
-    <meta http-equiv="refresh" content="0; url=/myblog/" />
-    <script>
-      var target = '/myblog' + location.pathname + location.search + location.hash;
-      location.replace(target);
-    </script>
+    <title>404 | CTF Writeups</title>
+    <meta name="description" content="ページが見つかりませんでした" />
+    <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <p><a id="fallback" href="/myblog/">/myblog/ に移動します</a></p>
-    <script>
-      document.getElementById('fallback').href = '/myblog' + location.pathname + location.search + location.hash;
-    </script>
+    <header>
+      <div class="container hero hero-container">
+        <a href="/" aria-label="CTF Writeups">
+          <strong>CTF Writeups</strong>
+        </a>
+        <p>CTFのwriteupと実績をまとめるブログ</p>
+      </div>
+    </header>
+    <main class="container">
+      <article class="article">
+        <h1>404</h1>
+        <p>ページが見つかりませんでした。</p>
+        <p><a href="/">トップへ戻る</a></p>
+      </article>
+    </main>
+    <footer class="footer">
+      <small>© 2026 Your Name</small>
+    </footer>
   </body>
 </html>
