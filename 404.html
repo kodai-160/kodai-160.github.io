@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting…</title>
+    <meta http-equiv="refresh" content="0; url=/myblog/" />
+    <script>
+      var target = '/myblog' + location.pathname + location.search + location.hash;
+      location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p><a id="fallback" href="/myblog/">/myblog/ に移動します</a></p>
+    <script>
+      document.getElementById('fallback').href = '/myblog' + location.pathname + location.search + location.hash;
+    </script>
+  </body>
+</html>
